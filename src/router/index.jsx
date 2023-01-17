@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-// import RootLayout from "../components/layouts/RootLayout";
-import AdminOrders from "../views/adminhome/AdminOrders";
-import AdminRooms from "../views/adminhome/AdminRooms";
-import AdminUsers from "../views/adminhome/AdminUsers";
+import RootLayout from "../components/layouts/RootLayout";
+import GuessOderDetail from "../views/admin/orders/GuessOderDetail";
+import Orders from "../views/admin/orders/Orders";
+import Overview from "../views/admin/Overview";
+import RoomsList from "../views/admin/rooms/RoomsList";
 import Login from "../views/Login";
-import AdminOverview from "../views/adminhome/AdminOrders";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    // element: <RootLayout />,
+    element: <RootLayout />,
     children: [
       {
         path: "/",
@@ -17,19 +17,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/adminoverview",
-        element: <AdminOverview />,
+        element: <Overview />,
       },
       {
         path: "/adminrooms",
-        element: <AdminRooms />,
+        element: <RoomsList />,
       },
       {
         path: "/adminusers",
-        element: <AdminUsers />,
+        element: <GuessOderDetail />,
       },
       {
         path: "/adminorders",
-        element: <AdminOrders />,
+        element: <Orders />,
       },
     ],
   },
