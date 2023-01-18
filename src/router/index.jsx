@@ -1,35 +1,45 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "../components/layouts/RootLayout";
-import GuessOderDetail from "../views/admin/orders/GuessOderDetail";
-import Orders from "../views/admin/orders/Orders";
+// import RootLayout from "../components/layouts/RootLayout";
+import Login from "../views/Login";
 import Overview from "../views/admin/Overview";
 import RoomsList from "../views/admin/rooms/RoomsList";
-import Login from "../views/Login";
+import AddNewRoom from "../views/admin/rooms/AddNewRoom";
+import UpdateRoom from "../views/admin/rooms/UpdateRoom";
+import Orders from "../views/admin/orders/Orders";
+import GuessOderDetail from "../views/admin/orders/GuessOderDetail";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    // element: <RootLayout />,
     children: [
       {
         path: "/",
         element: <Login />,
       },
       {
-        path: "/adminoverview",
+        path: "/overview",
         element: <Overview />,
       },
       {
-        path: "/adminrooms",
+        path: "/roomslist",
         element: <RoomsList />,
       },
       {
-        path: "/adminusers",
-        element: <GuessOderDetail />,
+        path: "/roomslist/addnew",
+        element: <AddNewRoom />,
       },
       {
-        path: "/adminorders",
+        path: "/roomslist/update/:roomid",
+        element: <UpdateRoom />,
+      },
+      {
+        path: "/orders",
         element: <Orders />,
+      },
+      {
+        path: "/orders/:roomid",
+        element: <GuessOderDetail />,
       },
     ],
   },
