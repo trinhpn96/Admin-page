@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const GuessOderDetail = () => {
-  return (
-    <div>GuessOderDetail</div>
-  )
-}
+  return <div>GuessOderDetail</div>;
+};
 
-export default GuessOderDetail
+export default GuessOderDetail;
