@@ -51,7 +51,7 @@ const Login = () => {
               />
               <button
                 onClick={togglePassword}
-                className="absolute bottom-3 right-4"
+                className="absolute bottom-3 right-4 text-black"
               >
                 <AiOutlineEye hidden={!passwordShown} />
                 <AiOutlineEyeInvisible hidden={passwordShown} />
