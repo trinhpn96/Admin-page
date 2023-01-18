@@ -15,7 +15,7 @@ const Login = () => {
       {/* Container */}
       <div className="">
         {/* Layout */}
-        <div className="flex flex-col gap-3 justify-center items-center fixed w-[80%] max-w-xs top-[20%] lg:top-1/2 left-1/2 -translate-x-1/2 lg:-translate-y-1/2 bg-gray-800 dark:bg-gray-300/95 py-8 px-6 rounded-lg">
+        <div className="flex flex-col gap-3 justify-center items-center fixed w-[80%] max-w-xs top-[20%] lg:top-1/2 left-1/2 -translate-x-1/2 lg:-translate-y-1/2 bg-gray-800 dark:bg-gray-100/95 py-8 px-6 rounded-lg">
           {/* Content */}
           <div>
             <h2 className="text-center text-3xl font-bold text-teal-600 ">
@@ -53,8 +53,8 @@ const Login = () => {
                 onClick={togglePassword}
                 className="absolute bottom-3 right-4"
               >
-                <AiOutlineEye hidden={passwordShown} />
-                <AiOutlineEyeInvisible hidden={!passwordShown} />
+                <AiOutlineEye hidden={!passwordShown} />
+                <AiOutlineEyeInvisible hidden={passwordShown} />
               </button>
             </div>
 
