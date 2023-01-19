@@ -1,4 +1,4 @@
-import { HiSearch, HiTrash } from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
 import { BsTrash } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
