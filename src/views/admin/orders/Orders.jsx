@@ -1,5 +1,4 @@
-
-import { HiSearch, HiTrash } from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
 import { BsTrash } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
@@ -129,8 +128,8 @@ const orderData = [
 ];
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
-  const totalOrders = orderData.length;
+  const [orders, setOrders] = useState([...orderData]);
+  const totalOrders = orders.length;
 
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 10;
@@ -155,8 +154,40 @@ const Orders = () => {
     const crrPageIndex = currentPage - 1;
     const startIndex = crrPageIndex * ordersPerPage;
 
-    setOrders(orderData.slice(startIndex, startIndex + ordersPerPage));
+    setOrders(orders.slice(startIndex, startIndex + ordersPerPage));
   }, [currentPage]);
+
+  const onSearch = (e) => {
+    e.preventDefault();
+    let keyword = document.getElementById("search-area").value;
+    if (!keyword || keyword.length === 0) {
+      setOrders(orderData);
+      return;
+    }
+    keyword = keyword.toLowerCase();
+
+    let filters = Object.keys(orderData[0]);
+
+    //--------Search
+    var filtered_data = orderData.filter(function (item) {
+      for (let i = 0; i < filters.length; i++) {
+        switch (typeof item[filters[i]]) {
+          case "string":
+            if (item[filters[i]].toLowerCase().includes(keyword)) {
+              return true;
+            }
+            break;
+          default:
+            if (item[filters[i]] == keyword) {
+              return true;
+            }
+        }
+      }
+      return false;
+    });
+    setOrders(filtered_data);
+    setCurrentPage(1);
+  };
 
   return (
     <div>
@@ -170,11 +201,13 @@ const Orders = () => {
             <span className=" text-sm font-bold text-teal-600 border-l-gray-200 border-l-2 px-4">
               Rosie P
             </span>
-            <img
-              src="https://i.pinimg.com/280x280_RS/e9/1d/06/e91d062f1c0708a9b1f0f1880a3d8f19.jpg"
-              alt="profilepic"
-              className=" aspect-square w-10 rounded-full"
-            />
+            <div>
+              <img
+                src="https://i.pinimg.com/280x280_RS/e9/1d/06/e91d062f1c0708a9b1f0f1880a3d8f19.jpg"
+                alt="profilepic"
+                className=" aspect-square w-10 rounded-full border-spacing-2 p-[2px] border-slate-200 border-2"
+              />
+            </div>
           </div>
 
           {/* SEARCH AREA */}
@@ -196,7 +229,7 @@ const Orders = () => {
                 />
               </div>
               <button
-                type="submit"
+                onClick={onSearch}
                 class="p-2.5 ml-2 text-sm font-medium text-white bg-teal-600 rounded-lg border border-teal-600 hover:bg-teal-500/50 focus:ring-4 focus:outline-none focus:ring-teal-300"
               >
                 <HiSearch className="text-xl" />
@@ -245,7 +278,7 @@ const Orders = () => {
             </div>
           </div>
           {/* PAGINATION */}
-          <div className="flex justify-end gap-8 p-4 mt-2">
+          <div className="flex justify-end gap-8 p-8 mt-2">
             <span className="text-sm text-zinc-500 pr-4">
               {(currentPage - 1) * ordersPerPage + 1} -{" "}
               {(currentPage - 1) * ordersPerPage + ordersPerPage} of{" "}
@@ -274,5 +307,6 @@ const Orders = () => {
       </div>
     </div>
   );
+};
 
 export default Orders;
