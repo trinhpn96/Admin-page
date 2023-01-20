@@ -1,7 +1,7 @@
 import { HiSearch } from "react-icons/hi";
 import { BsTrash } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { GoPrimitiveDot } from "react-icons/go";
+import { RiFolderUserLine } from "react-icons/ri";
 
 import { useEffect, useState } from "react";
 
@@ -251,7 +251,7 @@ const Orders = () => {
           {/* TABLE */}
           <div>
             <div className="overflow-x-auto">
-              <table className="table table-compact w-full border-2 ">
+              <table className="table table-compact w-full border-2">
                 <thead>
                   <tr>
                     <th className=" py-6 pl-4">No</th>
@@ -279,20 +279,20 @@ const Orders = () => {
                           <td>{order.room}</td>
                           <td>{order.checkinDay}</td>
                           <td className="">
-                            <div className="flex gap-2 ">
+                            <div className="flex gap-2 items-center">
                               <div className="group">
                                 <div
                                   className="hidden tooltip tooltip-open tooltip-success group-hover:block"
-                                  data-tip="Active"
+                                  data-tip="Order Detail"
                                 ></div>
-                                <GoPrimitiveDot className="hover:cursor-pointer text-2xl text-teal-400 " />
+                                <RiFolderUserLine className="cursor-pointer text-2xl text-teal-500 " />
                               </div>
                               <div className="group">
                                 <div
-                                  className="hidden tooltip tooltip-open tooltip-success group-hover:block"
+                                  className="hidden tooltip tooltip-open tooltip-error group-hover:block"
                                   data-tip="Delete"
                                 ></div>
-                                <BsTrash className="hover:cursor-pointer text-xl" />
+                                <BsTrash className="cursor-pointer text-xl text-red-500" />
                               </div>
                             </div>
                           </td>
