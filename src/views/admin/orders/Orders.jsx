@@ -318,7 +318,7 @@ const Orders = () => {
                 }}
                 className={`text-xl group-hover:cursor-pointer ${
                   currentPage === 1
-                    ? "text-gray-400 group-hover:cursor-not-allowed"
+                    ? "text-gray-400 dark:text-gray-500/70 group-hover:cursor-not-allowed"
                     : ""
                 } `}
               />
@@ -328,7 +328,7 @@ const Orders = () => {
                 }}
                 className={`text-xl group-hover:cursor-pointer ${
                   currentPage === totalPage
-                    ? "text-gray-400 group-hover:cursor-not-allowed"
+                    ? "text-gray-400 dark:text-gray-500/70 group-hover:cursor-not-allowed"
                     : ""
                 } `}
               />
