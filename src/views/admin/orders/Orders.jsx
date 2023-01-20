@@ -1,6 +1,8 @@
 import { HiSearch } from "react-icons/hi";
 import { BsTrash } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { GoPrimitiveDot } from "react-icons/go";
+
 import { useEffect, useState } from "react";
 
 const orderData = [
@@ -130,6 +132,7 @@ const orderData = [
 const Orders = () => {
   const [orders, setOrders] = useState([...orderData]);
   const totalOrders = orders.length;
+  console.log(orders);
 
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 10;
@@ -153,8 +156,15 @@ const Orders = () => {
   useEffect(() => {
     const crrPageIndex = currentPage - 1;
     const startIndex = crrPageIndex * ordersPerPage;
+    console.log(startIndex);
+    console.log(
+      orders.slice(
+        (currentPage - 1) * ordersPerPage,
+        (currentPage - 1) * ordersPerPage + ordersPerPage
+      )
+    );
 
-    setOrders(orders.slice(startIndex, startIndex + ordersPerPage));
+    // setOrders(orders.slice(startIndex, startIndex + ordersPerPage));
   }, [currentPage]);
 
   const onSearch = (e) => {
@@ -192,7 +202,7 @@ const Orders = () => {
   return (
     <div>
       {/* Container */}
-      <div className=" max-w-screen-xl mx-auto px-4 py-8">
+      <div className=" max-w-screen-xl mx-auto px-4 py-6">
         {/* Layout */}
         <div>
           {/* Content */}
@@ -211,13 +221,13 @@ const Orders = () => {
           </div>
 
           {/* SEARCH AREA */}
-          <div className="my-6">
+          <div className="mb-4">
             <form class="flex items-center">
               <label for="search-area" class="sr-only">
                 Search
               </label>
               <div class="relative max-w-screen-sm">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 ">
                   <HiSearch className="text-xl" />
                 </div>
                 <input
@@ -230,7 +240,7 @@ const Orders = () => {
               </div>
               <button
                 onClick={onSearch}
-                class="p-2.5 ml-2 text-sm font-medium text-white bg-teal-600 rounded-lg border border-teal-600 hover:bg-teal-500/50 focus:ring-4 focus:outline-none focus:ring-teal-300"
+                class="p-2.5 ml-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:cursor-pointer hover:bg-teal-500/50 focus:ring-4 focus:outline-none focus:ring-teal-300"
               >
                 <HiSearch className="text-xl" />
                 <span class="sr-only">Search</span>
@@ -241,10 +251,10 @@ const Orders = () => {
           {/* TABLE */}
           <div>
             <div className="overflow-x-auto">
-              <table className="table table-compact w-full">
+              <table className="table table-compact w-full border-2 ">
                 <thead>
                   <tr>
-                    <th></th>
+                    <th className=" py-6 pl-4">No</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -254,51 +264,72 @@ const Orders = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order) => {
-                    return (
-                      <tr key={order.id}>
-                        <th>{order.id}</th>
-                        <td>{order.guestName}</td>
-                        <td>{order.email}</td>
-                        <td>{order.phone}</td>
-                        <td>{order.room}</td>
-                        <td>{order.checkinDay}</td>
-                        <td className="">
-                          <div className="flex gap-2 justify-center">
-                            <div className=" aspect-square rounded-full bg-teal-400 h-4"></div>
-                            <BsTrash className="text-xl" />
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {orders
+                    .slice(
+                      (currentPage - 1) * ordersPerPage,
+                      (currentPage - 1) * ordersPerPage + ordersPerPage
+                    )
+                    .map((order) => {
+                      return (
+                        <tr key={order.id}>
+                          <th className="py-4 pl-4">{order.id}</th>
+                          <td>{order.guestName}</td>
+                          <td>{order.email}</td>
+                          <td>{order.phone}</td>
+                          <td>{order.room}</td>
+                          <td>{order.checkinDay}</td>
+                          <td className="">
+                            <div className="flex gap-2 ">
+                              <div className="group">
+                                <div
+                                  className="hidden tooltip tooltip-open tooltip-success group-hover:block"
+                                  data-tip="Active"
+                                ></div>
+                                <GoPrimitiveDot className="hover:cursor-pointer text-2xl text-teal-400 " />
+                              </div>
+                              <div className="group">
+                                <div
+                                  className="hidden tooltip tooltip-open tooltip-success group-hover:block"
+                                  data-tip="Delete"
+                                ></div>
+                                <BsTrash className="hover:cursor-pointer text-xl" />
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
                 </tbody>
                 <tfoot></tfoot>
               </table>
             </div>
           </div>
           {/* PAGINATION */}
-          <div className="flex justify-end gap-8 p-8 mt-2">
+          <div className="flex justify-end gap-8 p-4 ">
             <span className="text-sm text-zinc-500 pr-4">
               {(currentPage - 1) * ordersPerPage + 1} -{" "}
               {(currentPage - 1) * ordersPerPage + ordersPerPage} of{" "}
               {totalOrders}
             </span>
-            <div className="flex gap-4">
+            <div className="flex gap-4 group">
               <IoIosArrowBack
                 onClick={() => {
                   handleClick(true);
                 }}
-                className={`text-xl ${
-                  currentPage === 1 ? "text-gray-400" : ""
+                className={`text-xl group-hover:cursor-pointer ${
+                  currentPage === 1
+                    ? "text-gray-400 group-hover:cursor-not-allowed"
+                    : ""
                 } `}
               />
               <IoIosArrowForward
                 onClick={() => {
                   handleClick(false);
                 }}
-                className={`text-xl ${
-                  currentPage === totalPage ? "text-gray-400" : ""
+                className={`text-xl group-hover:cursor-pointer ${
+                  currentPage === totalPage
+                    ? "text-gray-400 group-hover:cursor-not-allowed"
+                    : ""
                 } `}
               />
             </div>
