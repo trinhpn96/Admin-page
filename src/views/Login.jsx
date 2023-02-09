@@ -38,7 +38,7 @@ const Login = () => {
       setWarningUserName(true);
       const accessRight = admins.admin.find((item) => item.username === key);
       if (accessRight?.password === pass) {
-        location.replace("/overview");
+        location.replace("/orders");
       } else {
         setWarning(false);
       }

@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const NavMenu = () => {
-  return (
-    <div>NavMenu</div>
-  )
-}
+  return <div>NavMenu</div>;
+};
 
-export default NavMenu
+export default NavMenu;

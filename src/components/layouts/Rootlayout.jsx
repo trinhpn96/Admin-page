@@ -6,7 +6,7 @@ const RootLayout = () => {
     <div>
       <NavMenu />
 
-      {/*children */}
+      {/*children pages */}
       <main>
         <Outlet />
       </main>

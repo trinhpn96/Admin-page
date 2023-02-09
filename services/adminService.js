@@ -19,3 +19,11 @@ export const updateAdminById = (id, data) => {
 export const deleteAdminById = (id) => {
   return axios.delete(`/admin/${id}`);
 };
+
+export const getOrder = () => {
+  return axios.get("/orders");
+};
+
+export const deleteOrderById = (id) => {
+  return axios.delete(`/orders/${id}`);
+};
